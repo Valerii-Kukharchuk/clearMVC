@@ -15,10 +15,23 @@
             model.updateData(item);
         });
     }
+
+    function bindUpdateGallery() {
+        gallery.eventHolder.on( gallery.changeEventName, (event, item) => {
+            updateGallery(item);
+        });
+    }
+
+    function updateGallery(searchText) {
+        model.getData(searchText).then((data) => {
+            gallery.updateGallery(data);
+        });   
+    }
     
     function bindEvents(){
         //bindSave();  
         bindUpdate();
+        bindUpdateGallery();
     }
     
     function initGallery(data){
@@ -26,12 +39,13 @@
     }
     
     function init() {
-        
-        model.getData().then((data) => {
+        let startText = "start";
+        model.getData(startText).then((data) => {
             initGallery(data);
             bindEvents();
         });    
     }
+    
     init();
     
 }())

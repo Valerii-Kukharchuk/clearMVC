@@ -30,15 +30,13 @@
             var div = document.createElement('div');
             div.className = "col-sm-6 col-md-4";
         
-            div.innerHTML = //"<div class=\"col-sm-6 col-md-4\" > " +
+            div.innerHTML = 
                 "<div class=\"thumbnail\"> " +
-                "<img src=\"" + element.Poster + "\" alt=\"" + element.Poster + "\">" + 
+                "<img src=\"" + element.Poster + "\" alt=\"" + element.Title + "\">" + 
                 "<div class=\"caption\">" +
                     "<h3>" + element.Title + "</h3>" +
-                    //"<p>...</p>
                     "<p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Detail</a></p>" +
                 "</div>" +
-                //"</div>" +
             "</div>";
             return div;
         },
@@ -46,10 +44,6 @@
         buildGallery : function (items) {
             console.log("Gallery is ready");
             console.log(items);
-            // for( var i = 0; i < items.Search.length; i++) {
-            //     this.DOMElements.galleryContainer
-            //         .appendChild( this.formContentCard(items.Search[i]) );
-            // }
 
             items.Search.forEach(item => this.DOMElements.galleryContainer
                     .appendChild( this.formContentCard(item) ));
@@ -62,9 +56,18 @@
              }    
         },
 
+        showNotFoundResults : function() {
+            this.DOMElements.galleryContainer.innerHTML = "<h3>Not Found Results</h3>";
+        },
+
         updateGallery : function (items) {
            this.cleanGallery();
-           this.buildGallery(items);
+           if(items.Search) {
+                this.buildGallery(items);
+           } else {
+               this.showNotFoundResults();
+           }
+           
         },
 
         initListeners : function () {

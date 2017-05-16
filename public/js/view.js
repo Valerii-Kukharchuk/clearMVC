@@ -32,7 +32,7 @@
         
             div.innerHTML = //"<div class=\"col-sm-6 col-md-4\" > " +
                 "<div class=\"thumbnail\"> " +
-                "<img src=\"" + element.Poster + "\" alt=\"poster\">" + 
+                "<img src=\"" + element.Poster + "\" alt=\"" + element.Poster + "\">" + 
                 "<div class=\"caption\">" +
                     "<h3>" + element.Title + "</h3>" +
                     //"<p>...</p>
@@ -46,10 +46,13 @@
         buildGallery : function (items) {
             console.log("Gallery is ready");
             console.log(items);
-            for( var i = 0; i < items.Search.length; i++) {
-                this.DOMElements.galleryContainer
-                    .appendChild( this.formContentCard(items.Search[i]) );
-            }            
+            // for( var i = 0; i < items.Search.length; i++) {
+            //     this.DOMElements.galleryContainer
+            //         .appendChild( this.formContentCard(items.Search[i]) );
+            // }
+
+            items.Search.forEach(item => this.DOMElements.galleryContainer
+                    .appendChild( this.formContentCard(item) ));
         },
 
         cleanGallery : function() {

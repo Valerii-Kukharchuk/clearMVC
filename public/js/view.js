@@ -50,9 +50,9 @@
         },
 
         cleanGallery : function() {
-             while(this.DOMElements.galleryContainer.childNodes[0]){
-                this.DOMElements.galleryContainer.removeChild(
-                    this.DOMElements.galleryContainer.childNodes[0]);
+            let container = this.DOMElements.galleryContainer;
+             while(container.childNodes[0]){
+                container.removeChild(container.childNodes[0]);
              }    
         },
 
@@ -66,8 +66,7 @@
                 this.buildGallery(items);
            } else {
                this.showNotFoundResults();
-           }
-           
+           } 
         },
 
         initListeners : function () {

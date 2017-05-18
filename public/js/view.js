@@ -27,26 +27,25 @@
         },
 
         formContentCard : function (element) {
-            var div = document.createElement('div');
-            div.className = "col-sm-6 col-md-4";
-        
-            div.innerHTML = 
-                "<div class=\"thumbnail\"> " +
-                "<img src=\"" + element.Poster + "\" alt=\"" + element.Title + "\">" + 
-                "<div class=\"caption\">" +
-                    "<h3>" + element.Title + "</h3>" +
-                    "<p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Detail</a></p>" +
-                "</div>" +
-            "</div>";
-            return div;
+            return `
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail"> 
+                    <img src="${element.Poster}" alt="${element.Title}"> 
+                    <div class="caption">
+                        <h3>${element.Title}</h3>
+                        <p><a href="#" class="btn btn-primary" role="button">Detail</a></p>
+                    </div>
+                </div>
+             </div>   
+            `;
         },
         
         buildGallery : function (items) {
             console.log("Gallery is ready");
             console.log(items);
 
-            items.Search.forEach(item => this.DOMElements.galleryContainer
-                    .appendChild( this.formContentCard(item) ));
+            this.DOMElements.galleryContainer.innerHTML = 
+                items.Search.reduce((accum,cur) => accum += this.formContentCard(cur),"");
         },
 
         cleanGallery : function() {

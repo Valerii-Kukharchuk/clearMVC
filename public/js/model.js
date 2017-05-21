@@ -6,7 +6,7 @@
         var a = [];
         
         function getData(searchText) {
-            return $.get( "http://www.omdbapi.com/?page=1&s=" + searchText, function( data ) {
+            return $.get( "http://www.omdbapi.com/?i=tt3896198&apikey=520bbe17&s=" + searchText, function( data ) {
                 console.log("Initial data is loaded");
                 return data;
             })            

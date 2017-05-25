@@ -3,18 +3,14 @@
 
     function Gallery (items) {        
         this.DOMElements = {
-            saveBtn     : document.querySelector("#saveBtn"),
-            refreshBtn  : document.querySelector("#refreshBtn"),
             galleryContainer : document.querySelector("#content"),
             searchText : document.querySelector("#searchText")
         };
 
-        //this.saveDefer = $.Deferred();
         this.items = items;
         this.counter = 0;
         
         this.eventHolder = $({});
-        this.updateEventName = "update";
         this.changeEventName = "changeSearchText";
         this.init();
     }
@@ -68,18 +64,7 @@
            } 
         },
 
-        initListeners : function () {
-            
-            /*this.DOMElements.saveBtn.addEventListener("click", () => {
-                let item = this.items[0];
-                item.name = "New name";
-                this.saveDefer.resolve(item);
-            });*/
-            
-            this.DOMElements.refreshBtn.addEventListener("click", () => {
-                this.eventHolder.trigger( this.updateEventName , [{counter: this.counter++}]);
-            });
-
+        initListeners : function () {        
             this.DOMElements.searchText.addEventListener("change", (e) => {
                 this.eventHolder.trigger( this.changeEventName, [e.currentTarget.value]);
             });

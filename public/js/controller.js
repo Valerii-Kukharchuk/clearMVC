@@ -2,19 +2,7 @@
     
 	var model = window.app.model;
     var Gallery = window.app.Gallery;
-    var gallery = null;
-            
-    /*function bindSave() {
-        gallery.saveDefer.then((item) => {
-            model.saveData(item);    
-        });
-    }*/
-    
-    function bindUpdate() {
-        gallery.eventHolder.on( gallery.updateEventName, (event, item) => {
-            model.updateData(item);
-        });
-    }
+    var gallery = null;            
 
     function bindUpdateGallery() {
         gallery.eventHolder.on( gallery.changeEventName, (event, item) => {
@@ -29,8 +17,6 @@
     }
     
     function bindEvents(){
-        //bindSave();  
-        bindUpdate();
         bindUpdateGallery();
     }
     

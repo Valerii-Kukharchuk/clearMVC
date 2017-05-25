@@ -5,8 +5,8 @@
 
         var a = [];
         
-        function getData() {
-            return $.get( "js/data.json", function( data ) {
+        function getData(searchText) {
+            return $.get( "http://www.omdbapi.com/?i=tt3896198&apikey=520bbe17&s=" + searchText, function( data ) {
                 console.log("Initial data is loaded");
                 return data;
             })            

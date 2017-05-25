@@ -27,3 +27,13 @@
 	padding: 15px;
 }
 
+.img-size {
+  height: 450px;
+  width: 300px;
+}
+
+.input-search {
+    padding-bottom: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+}

@@ -2,36 +2,36 @@
     
 	var model = window.app.model;
     var Gallery = window.app.Gallery;
-    var gallery = null;
-            
-    /*function bindSave() {
-        gallery.saveDefer.then((item) => {
-            model.saveData(item);    
+    var gallery = null;            
+
+    function bindUpdateGallery() {
+        gallery.eventHolder.on( gallery.changeEventName, (event, searchText) => {
+            updateGallery(searchText);
         });
-    }*/
-    
-    function bindUpdate() {
-        gallery.eventHolder.on( gallery.updateEventName, (event, item) => {
-            model.updateData(item);
-        });
+    }
+
+    function updateGallery(searchText) {
+        model.getData(searchText).then(serverResponse => {
+            gallery.updateGallery(serverResponse);
+        });   
     }
     
     function bindEvents(){
-        //bindSave();  
-        bindUpdate();
+        bindUpdateGallery();
     }
     
     function initGallery(data){
-        gallery = new Gallery(data);   
+        gallery = new Gallery(data.Search);   
     }
     
     function init() {
-        
-        model.getData().then((data) => {
-            initGallery(data);
+        let startText = "start";
+        model.getData(startText).then(serverResponse => {
+            initGallery(serverResponse);
             bindEvents();
         });    
     }
+    
     init();
     
 }())

@@ -24,7 +24,7 @@
 
         formContentCard : function (element) {
             return `
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-4"">
                 <div class="thumbnail"> 
                     <img src="${element.Poster}" alt="${element.Title}"> 
                     <div class="caption">

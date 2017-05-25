@@ -1,13 +1,13 @@
 'use strict';
 (function() {
 
-    function Gallery (items) {        
+    function Gallery (films) {        
         this.DOMElements = {
             galleryContainer : document.querySelector("#content"),
             searchText : document.querySelector("#searchText")
         };
 
-        this.items = items;
+        this.films = films || {};
         this.counter = 0;
         
         this.eventHolder = $({});
@@ -18,7 +18,7 @@
     Gallery.prototype = {
         
         init : function () {
-            this.buildGallery(this.items);
+            this.buildGallery(this.films);
             this.initListeners();
         },
 
@@ -36,12 +36,12 @@
             `;
         },
         
-        buildGallery : function (items) {
+        buildGallery : function (films) {
             console.log("Gallery is ready");
-            console.log(items);
+            console.log(films);
 
             this.DOMElements.galleryContainer.innerHTML = 
-                items.Search.reduce((accum,cur) => accum += this.formContentCard(cur),"");
+                films.reduce((accum,cur) => accum += this.formContentCard(cur),"");
         },
 
         cleanGallery : function() {
@@ -55,10 +55,10 @@
             this.DOMElements.galleryContainer.innerHTML = "<h3>Not Found Results</h3>";
         },
 
-        updateGallery : function (items) {
+        updateGallery : function (serverResponse) {
            this.cleanGallery();
-           if(items.Search) {
-                this.buildGallery(items);
+           if(serverResponse.Search) {
+                this.buildGallery(serverResponse.Search);
            } else {
                this.showNotFoundResults();
            } 
